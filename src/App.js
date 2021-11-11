@@ -1,15 +1,15 @@
 import { GlobalStyle } from './styles/globals';
 import Header from './components/Header';
 import Main from './components/Main';
+import PatientsProvider from './context/PatientsContext';
 
 function App() {
   return (
-    <div className="App">
+    <PatientsProvider>
       <GlobalStyle />
       <Header />
-      <Main />
-      {/* <Register /> */}
-    </div>
+      <Main />      
+    </PatientsProvider>
   );
 }
 

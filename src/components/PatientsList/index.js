@@ -1,42 +1,11 @@
 import Patients from "../Patients"
+import { usePatients } from "../../context/PatientsContext"
 import { Container } from "../PatientsList/styles"
 
-const patients = [
-  {
-    name: 'joao',
-    cpf: 2131,
-    birthDate: '29-03-1992',
-    gender: 'masculino',
-    adress: 'rua juarez tavora',
-    status: 'Ativo'
-  },
-  {
-    name: 'joao',
-    cpf: 2131,
-    birthDate: '29-03-1992',
-    gender: 'masculino',
-    adress: 'rua juarez tavora',
-    status: 'Ativo'
-  },
-  {
-    name: 'joao',
-    cpf: 2131,
-    birthDate: '29-03-1992',
-    gender: 'masculino',
-    adress: 'rua juarez tavora',
-    status: 'Ativo'
-  },
-  {
-    name: 'joao',
-    cpf: 2131,
-    birthDate: '29-03-1992',
-    gender: 'masculino',
-    adress: 'rua juarez tavora',
-    status: 'Ativo'
-  }
-]
-
 export default function PatientsList() {
+
+  const { patients } = usePatients();
+
   return (
     <Container>
       <table>
