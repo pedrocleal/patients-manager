@@ -23,7 +23,9 @@ export default function PatientsList({ searchInputValue }) {
         </thead>
         <tbody>
           {filteredPatients.map((patient) => (
-            <Patients 
+            <Patients
+            key={patient.id}
+            id={patient.id} 
             name={patient.name}
             cpf={patient.cpf}
             birthDate={patient.birthDate}

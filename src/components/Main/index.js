@@ -19,7 +19,7 @@ export default function Main() {
     <>
       <RegisterModal isOpen={AddModalOpen} onRequestClose={() => setAddModalOpen(false)}/>
       <Container>
-        <Input placeholder="Buscar..." value={searchInputValue} onChange={handleInputChange}/>
+        <Input placeholder="Buscar paciente..." value={searchInputValue} onChange={handleInputChange}/>
         <button className="addButton" onClick={() => setAddModalOpen(prevState => !prevState)}>+</button>
         <h1>Lista de Pacientes</h1>
         <PatientsList searchInputValue={searchInputValue}/>    

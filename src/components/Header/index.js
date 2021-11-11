@@ -3,7 +3,7 @@ import { Container } from "./styles"
 export default function Header() {
   return (
     <Container>
-      <h1>PacientsManager</h1>
+      <h1>PatientsManager</h1>
       <nav>
         <ul>
           <li><a href="https://www.linkedin.com/in/pedro-leal-2335a0214/" target="_blank" rel="noreferrer">Linkedin</a></li>

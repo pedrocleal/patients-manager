@@ -37,6 +37,7 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
   function handleNewPatient() {
     setPatients((prevState) => [
       {
+        id: patients.length + 1,
         name: inputValues.name,
         birthDate: inputValues.birthDate,
         cpf: inputValues.cpf,
@@ -56,7 +57,7 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
     <ModalOverlay>
       <ModalContainer>
         <button onClick={onRequestClose} className="closeModal">fechar</button>
-        <h1>Cadastrar paciente</h1>
+        <h1>Cadastrar Paciente</h1>
         <form onSubmit={handleFormSubmit}>
           <Input label="Nome do paciente" value={inputValues.name} name="name" onChange={handleInputChange} required/>
           <Input label="Data de Nascimento" type="date" value={inputValues.birthDate} name="birthDate" onChange={handleInputChange} required/>
@@ -72,7 +73,7 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
               <option value="Ativo">Ativo</option>
               <option value="Inativo">Inativo</option>
           </Select>
-          <button type="submit">Cadastrar</button>
+          <button class="submitBtn" type="submit">Cadastrar</button>
         </form> 
       </ModalContainer>
     </ModalOverlay>,

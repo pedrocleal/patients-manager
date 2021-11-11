@@ -15,12 +15,38 @@ export const ModalOverlay = styled.div`
 export const ModalContainer = styled.div`
   position: relative;
   background-color: #fff;
-  padding: 24px;
+  width: 700px;
+  padding: 10px 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  border: 5px solid var(--primary-color);
+  border: 3px solid var(--primary-color);
+  border-radius: 10px;
+
+  h1 {
+    color: var(--primary-color);
+  }
+
+  .submitBtn {
+    margin: 24px 0;
+
+    width: 200px;
+    height: 50px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #fff;
+    background-color: var(--primary-color);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 200ms ease;
+  }
+
+  .submitBtn:hover {
+    background-color: #916df0;
+  }
 
   .closeModal {
     position: absolute;
@@ -29,7 +55,4 @@ export const ModalContainer = styled.div`
     margin: 10px;
   }
 
-  h1 {
-    color: var(--primary-color);
-  }
 `
