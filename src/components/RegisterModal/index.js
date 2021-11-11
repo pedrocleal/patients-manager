@@ -4,6 +4,7 @@ import { usePatients } from "../../context/PatientsContext";
 import { ModalContainer, ModalOverlay } from "./styles";
 import Input from "../Input"
 import Select from "../Select";
+import { GrClose } from 'react-icons/gr';
 
 const defaultValues = {
   name: '',
@@ -56,7 +57,7 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
   return ReactDom.createPortal(
     <ModalOverlay>
       <ModalContainer>
-        <button onClick={onRequestClose} className="closeModal">fechar</button>
+        <button onClick={onRequestClose} className="closeModal"><GrClose style={{ color: '#372db3'}}/></button>
         <h1>Cadastrar Paciente</h1>
         <form onSubmit={handleFormSubmit}>
           <Input label="Nome do paciente" value={inputValues.name} name="name" onChange={handleInputChange} required/>
@@ -73,7 +74,7 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
               <option value="Ativo">Ativo</option>
               <option value="Inativo">Inativo</option>
           </Select>
-          <button class="submitBtn" type="submit">Cadastrar</button>
+          <button className="submitBtn" type="submit">Cadastrar</button>
         </form> 
       </ModalContainer>
     </ModalOverlay>,

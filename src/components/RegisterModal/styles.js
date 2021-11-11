@@ -52,7 +52,14 @@ export const ModalContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    margin: 10px;
+    margin: 25px;
+
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
   }
 
 `
