@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { Container } from './styles';
+
+import PatientsList from '../PatientsList';
 import Input from '../Input';
 
 export default function Main() {
@@ -10,8 +13,13 @@ export default function Main() {
   }
 
   return (
-    <div>
-      <Input placeholder="Buscar..." value={searchInputValue} onChange={handleInputChange}/>
-    </div>
+    <>
+      <Container>
+        <Input placeholder="Buscar..." value={searchInputValue} onChange={handleInputChange}/>
+        <button className="addButton">+</button>
+        <h1>Lista de Pacientes</h1>
+        <PatientsList />    
+      </Container>
+    </>
   )
 }

@@ -6,11 +6,14 @@ export const InputContainer = styled.div`
   }
 
   input {
+    accent-color: var(--primary-color);
     background: transparent;
-    border: 1px solid #000;
+    outline: none;
+    border: 2px solid var(--primary-color);
     padding: 20px;
     font-size: 14px;
     font-weight: 700;
     color: #000;
+    width: 350px;
   }
 `

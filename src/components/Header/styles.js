@@ -6,7 +6,7 @@ export const Container = styled.header`
   justify-content: space-between;
 
   padding: 24px;
-  background: #372db3;
+  background: var(--primary-color);
   color: #fff;
   ul {
     display: flex;

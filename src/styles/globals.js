@@ -1,11 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  * { 
-    font-family: 'Lato', sans-serif;
+  :root {
+    --primary-color: #372db3;
   }
-
+  
   body {
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
