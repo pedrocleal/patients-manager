@@ -2,9 +2,11 @@ import Patients from "../Patients"
 import { usePatients } from "../../context/PatientsContext"
 import { Container } from "../PatientsList/styles"
 
-export default function PatientsList() {
+export default function PatientsList({ searchInputValue }) {
 
   const { patients } = usePatients();
+
+  const filteredPatients = patients.filter(patient => patient.name.toLowerCase().includes(searchInputValue));
 
   return (
     <Container>
@@ -20,7 +22,7 @@ export default function PatientsList() {
           </tr>
         </thead>
         <tbody>
-          {patients.map((patient) => (
+          {filteredPatients.map((patient) => (
             <Patients 
             name={patient.name}
             cpf={patient.cpf}

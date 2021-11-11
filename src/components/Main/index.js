@@ -9,7 +9,7 @@ export default function Main() {
 
   const [ searchInputValue, setSearchInputValue ] = useState('');
   
-  const [ AddModalOpen, setAddModalOpen ] = useState(false)
+  const [ AddModalOpen, setAddModalOpen ] = useState(false);
 
   function handleInputChange(e) {
     setSearchInputValue(e.target.value);
@@ -22,7 +22,7 @@ export default function Main() {
         <Input placeholder="Buscar..." value={searchInputValue} onChange={handleInputChange}/>
         <button className="addButton" onClick={() => setAddModalOpen(prevState => !prevState)}>+</button>
         <h1>Lista de Pacientes</h1>
-        <PatientsList />    
+        <PatientsList searchInputValue={searchInputValue}/>    
       </Container>
     </>
   )
