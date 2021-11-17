@@ -27,5 +27,10 @@ export const Container = styled.main`
     font-size: 50px;
     background: var(--primary-color);
     cursor: pointer;
+    transition: 100ms ease-in;
+    
+    :hover {
+      background: #0e8692
+    }
   }
 `

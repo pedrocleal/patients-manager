@@ -1,6 +1,7 @@
 import Patients from "../Patients"
 import { usePatients } from "../../context/PatientsContext"
 import { Container } from "../PatientsList/styles"
+import { useEffect } from "react";
 
 export default function PatientsList({ searchInputValue }) {
 
@@ -8,8 +9,12 @@ export default function PatientsList({ searchInputValue }) {
 
   const filteredPatients = patients.filter(patient => patient.name.toLowerCase().includes(searchInputValue));
 
+  useEffect(() => {
+    localStorage.setItem('patients', JSON.stringify(patients));
+  }, [patients])
+
   function handleRemovePatients(clickedId) {
-    setPatients(prevState => prevState.filter(patient => patient.id !== clickedId))
+    setPatients(prevState => prevState.filter(patient => patient.id !== clickedId));
   }
 
   return (

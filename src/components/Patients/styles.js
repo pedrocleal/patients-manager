@@ -21,7 +21,7 @@ export const TableRowData = styled.tr`
 export const EditButton = styled.button`
   border: 1px solid #ddd;
   margin-right: 15px;
-  background: #686de0;
+  background: #22a6b3;
   color: #fff;
   font: 'Inter', sans-serif;
   font-weight: 600;
@@ -29,9 +29,10 @@ export const EditButton = styled.button`
   cursor: pointer;
   padding: 10px;
   width: 80px;
+  transition: 200ms ease-in;
 
   :hover {
-    background: #4834d4;
+    background: #0e8692;
   }
 `
 
@@ -43,6 +44,7 @@ export const RemoveButton = styled.button`
   font-weight: 600;
   outline: none;
   cursor: pointer;
+  transition: 200ms ease-in;
   padding: 10px;
 
   :hover {

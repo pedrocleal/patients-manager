@@ -1,11 +1,12 @@
 import ReactDom from "react-dom";
-import { useState } from "react"
-import { usePatients } from "../../context/PatientsContext";
-import { ModalContainer, ModalOverlay } from "./styles";
-import Input from "../Input"
-import Select from "../Select";
+import { useState } from "react";
 import { GrClose } from 'react-icons/gr';
+import Input from "../Input";
+import Select from "../Select";
+import { usePatients } from "../../context/PatientsContext";
+
 import toast from 'react-hot-toast';
+import { ModalContainer, ModalOverlay } from "./styles";
 
 const defaultValues = {
   name: '',
@@ -16,11 +17,12 @@ const defaultValues = {
   status: true
 }
 
-export default function RegisterModal({ isOpen, onRequestClose }) {
+export default function EditModal({ clickedId, isOpen, onRequestClose }) {
 
   const { patients, setPatients } = usePatients();
-  const [ inputValues, setInputValues ] = useState(defaultValues)
 
+  const [ inputValues, setInputValues ] = useState(defaultValues);
+  
   function handleInputChange(e) {
     const { name, value } =  e.target;
     setInputValues((prevState) => ({
@@ -31,42 +33,41 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    handleNewPatient(); // add new patients
-    setInputValues(defaultValues); // set input values to default values ''
+    handleEditPatient(clickedId);
+    setInputValues(defaultValues);
   }
 
-  function handleNewPatient() {
+  function handleEditPatient(clickedId) {
     const formatDate = handleDateFormat(inputValues.birthDate);
     const hasCpf = cpfValidation();
 
     if (!hasCpf) {
-      setPatients((prevState) => [
-        {
-          id: patients.length + 1,
-          name: inputValues.name,
-          birthDate: formatDate,
-          cpf: inputValues.cpf,
-          gender: inputValues.gender,
-          adress: inputValues.adress,
-          status: inputValues.status
-        },
-        ...prevState
-      ]);
-      toast.success('Paciente cadastrado com sucesso!');
+      setPatients(prevState => (
+        prevState.map((patient) => (
+          patient.id === clickedId ? (
+            {
+              id: patient.id,
+              name: inputValues.name,
+              birthDate: formatDate,
+              cpf: inputValues.cpf,
+              gender: inputValues.gender,
+              adress: inputValues.adress,
+              status: inputValues.status
+            }
+          ) : patient
+        ))
+      ));
+      toast.success('Dados atualizados!');
       onRequestClose();
     } else {
-      toast.error('CPF JÁ REGISTRADO');
+      toast.error('CPF já registrado');
     }
   }
 
   function handleDateFormat(str) {
     return str.split('-').reverse().join("/");
   }
-
-  if(!isOpen) {
-    return null
-  }
-
+  
   function cpfValidation() {
     const { cpf } = inputValues;
     const cpfExists = patients.find(patient => patient.cpf === cpf);
@@ -74,19 +75,23 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
     if (cpfExists) {
       return true;
     }
-
+    
     return false;
+  }
+
+  if(!isOpen) {
+    return null
   }
   
   return ReactDom.createPortal(
     <ModalOverlay>
       <ModalContainer>
         <button onClick={onRequestClose} className="closeModal"><GrClose style={{ color: '#372db3'}}/></button>
-        <h1>Cadastrar Paciente</h1>
+        <h1>Editar Paciente</h1>
         <form onSubmit={handleFormSubmit}>
           <Input label="Nome do paciente" value={inputValues.name} name="name" onChange={handleInputChange} required/>
           <Input label="Data de Nascimento" type="date" value={inputValues.birthDate} name="birthDate" onChange={handleInputChange} required/>
-          <Input label="CPF do paciente" type="number" value={inputValues.cpf} name="cpf" onChange={handleInputChange} required/>
+          <Input label="CPF do paciente" type="number" value={inputValues.cpf} name="cpf" onChange={handleInputChange} maxLength={11} required/>
           <Input label="Endereço do paciente" value={inputValues.adress} name="adress" onChange={handleInputChange} required/>
           <Select label="Sexo do paciente" value={inputValues.gender} name="gender" onChange={handleInputChange} required>
             <option value="">Selecione o gênero do paciente</option>
@@ -98,10 +103,10 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
               <option value="Ativo">Ativo</option>
               <option value="Inativo">Inativo</option>
           </Select>
-          <button className="submitBtn" type="submit">Cadastrar</button>
+          <button className="submitBtn" type="submit">Editar</button>
         </form> 
       </ModalContainer>
     </ModalOverlay>,
-    document.getElementById('add-modal')
+    document.getElementById('edit-modal')
   );
 }
