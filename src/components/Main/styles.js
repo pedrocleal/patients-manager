@@ -15,9 +15,9 @@ export const Container = styled.main`
   }
 
   .addButton {
-    position: absolute;
-    top: 90vh;
-    left: 95vw;
+    position: fixed;
+    top: 80%;
+    left: 95%;
 
     width: 70px;
     height: 70px;
