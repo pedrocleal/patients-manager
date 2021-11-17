@@ -4,9 +4,13 @@ import { Container } from "../PatientsList/styles"
 
 export default function PatientsList({ searchInputValue }) {
 
-  const { patients } = usePatients();
+  const { patients, setPatients } = usePatients();
 
   const filteredPatients = patients.filter(patient => patient.name.toLowerCase().includes(searchInputValue));
+
+  function handleRemovePatients(clickedId) {
+    setPatients(prevState => prevState.filter(patient => patient.id !== clickedId))
+  }
 
   return (
     <Container>
@@ -32,11 +36,11 @@ export default function PatientsList({ searchInputValue }) {
             gender={patient.gender}
             adress={patient.adress}
             status={patient.status}
+            onRemove={handleRemovePatients}
             />
           ))}
         </tbody>
       </table>
-      
     </Container>
   )
 }

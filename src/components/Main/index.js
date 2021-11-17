@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container } from './styles';
 import RegisterModal from '../RegisterModal';
+import { Toaster } from 'react-hot-toast';
 
 import PatientsList from '../PatientsList';
 import Input from '../Input';
@@ -24,6 +25,12 @@ export default function Main() {
         <h1>Lista de Pacientes</h1>
         <PatientsList searchInputValue={searchInputValue}/>    
       </Container>
+      <Toaster toastOptions={{
+        style: {
+          fontSize: '16px',
+          fontWeight: '600'
+        }
+      }}/>
     </>
   )
 }

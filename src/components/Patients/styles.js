@@ -9,7 +9,43 @@ export const TableRowData = styled.tr`
     padding: 10px;
   }
 
+  td:nth-child(7) {
+    width: 190px;
+  }
+
   :nth-child(even) {
     background-color: #f2f2f2;
+  }
+`
+
+export const EditButton = styled.button`
+  border: 1px solid #ddd;
+  margin-right: 15px;
+  background: #686de0;
+  color: #fff;
+  font: 'Inter', sans-serif;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 80px;
+
+  :hover {
+    background: #4834d4;
+  }
+`
+
+export const RemoveButton = styled.button`
+  border: 1px solid #ddd;
+  background: #eb4d4b;
+  color: #fff;
+  font: 'Inter', sans-serif;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+
+  :hover {
+    background: red;
   }
 `

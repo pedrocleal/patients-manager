@@ -5,6 +5,7 @@ import { ModalContainer, ModalOverlay } from "./styles";
 import Input from "../Input"
 import Select from "../Select";
 import { GrClose } from 'react-icons/gr';
+import toast from 'react-hot-toast';
 
 const defaultValues = {
   name: '',
@@ -29,29 +30,47 @@ export default function RegisterModal({ isOpen, onRequestClose }) {
   }
 
   function handleFormSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     handleNewPatient(); // add new patients
     setInputValues(defaultValues); // set input values to default values ''
-    onRequestClose(); //to close modal when submit the form
   }
 
   function handleNewPatient() {
-    setPatients((prevState) => [
-      {
-        id: patients.length + 1,
-        name: inputValues.name,
-        birthDate: inputValues.birthDate,
-        cpf: inputValues.cpf,
-        gender: inputValues.gender,
-        adress: inputValues.adress,
-        status: inputValues.status
-      },
-      ...prevState
-    ]);
+    const hasCpf = cpfValidation();
+
+    if (!hasCpf) {
+      setPatients((prevState) => [
+        {
+          id: patients.length + 1,
+          name: inputValues.name,
+          birthDate: inputValues.birthDate,
+          cpf: inputValues.cpf,
+          gender: inputValues.gender,
+          adress: inputValues.adress,
+          status: inputValues.status
+        },
+        ...prevState
+      ]);
+      toast.success('Paciente cadastrado com sucesso!');
+      onRequestClose();
+    } else {
+      toast.error('CPF JÁ REGISTRADO');
+    }
   }
 
   if(!isOpen) {
     return null
+  }
+
+  function cpfValidation() {
+    const { cpf } = inputValues;
+    const cpfExists = patients.find(patient => patient.cpf === cpf);
+    
+    if (cpfExists) {
+      return true;
+    }
+
+    return false;
   }
   
   return ReactDom.createPortal(
